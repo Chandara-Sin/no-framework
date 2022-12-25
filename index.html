@@ -20,7 +20,7 @@
     <hello-planet name="Napture" id="first-hello-planet">
       <span id="icon" slot="icon">😃 Hello</span></hello-planet
     >
-    <h1>Hello Pin</h1>
+    <h1>Hello Me</h1>
     <div>
       <input type="text" placeholder="Search..." id="search-input" />
     </div>
@@ -30,7 +30,8 @@
         Only show product in stock
       </label>
     </div>
-    <table id="product-table">
+    <table-product id="product-table"></table-product>
+    <!-- <table id="product-table">
       <thead>
         <tr>
           <th>Name</th>
@@ -38,13 +39,34 @@
         </tr>
       </thead>
       <tbody></tbody>
-    </table>
+    </table> -->
     <template id="hello-planet-template">
       <h1 id="hello">Hello Template</h1>
       <slot name="icon">default</slot>
     </template>
     <script src="main.js"></script>
-    <script src="components/hello-planet/hello-planet.js"></script>
     <script src="components/planet-input/planet-input.js"></script>
+    <script src="components/table-product/table-product.js"></script>
+    <script src="components/hello-planet/hello-planet.js"></script>
+    <script>
+      let PRODUCTS = [];
+
+      async function fetchProducts() {
+        try {
+          const response = await fetch("products.json");
+          PRODUCTS = await response.json();
+        } catch (e) {
+          console.log(e);
+        }
+      }
+
+      fetchProducts()
+        .then(() =>
+          document
+            .getElementById("product-table")
+            .setAttribute("products", JSON.stringify(PRODUCTS))
+        )
+        .catch((e) => console.error(e));
+    </script>
   </body>
 </html>

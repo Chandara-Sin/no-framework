@@ -48,25 +48,5 @@
     <script src="components/planet-input/planet-input.js"></script>
     <script src="components/table-product/table-product.js"></script>
     <script src="components/hello-planet/hello-planet.js"></script>
-    <script>
-      let PRODUCTS = [];
-
-      async function fetchProducts() {
-        try {
-          const response = await fetch("products.json");
-          PRODUCTS = await response.json();
-        } catch (e) {
-          console.log(e);
-        }
-      }
-
-      fetchProducts()
-        .then(() =>
-          document
-            .getElementById("product-table")
-            .setAttribute("products", JSON.stringify(PRODUCTS))
-        )
-        .catch((e) => console.error(e));
-    </script>
   </body>
 </html>

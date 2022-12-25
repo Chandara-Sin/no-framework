@@ -9,11 +9,17 @@
       h1 {
         color: purple;
       }
+      #icon {
+        color: blue;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
     <planet-input></planet-input>
-    <hello-planet name="Napture" id="first-hello-planet"></hello-planet>
+    <hello-planet name="Napture" id="first-hello-planet">
+      <span id="icon" slot="icon">😃 Hello</span></hello-planet
+    >
     <h1>Hello Pin</h1>
     <div>
       <input type="text" placeholder="Search..." id="search-input" />
@@ -33,6 +39,10 @@
       </thead>
       <tbody></tbody>
     </table>
+    <template id="hello-planet-template">
+      <h1 id="hello">Hello Template</h1>
+      <slot name="icon">default</slot>
+    </template>
     <script src="main.js"></script>
     <script src="components/hello-planet/hello-planet.js"></script>
     <script src="components/planet-input/planet-input.js"></script>

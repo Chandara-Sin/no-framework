@@ -7,23 +7,21 @@ class HelloPlanet extends HTMLElement {
     super();
 
     const shadow = this.attachShadow({ mode: "open" });
-    const h1 = document.createElement("h1");
-    h1.setAttribute("id", "hello");
-    shadow.appendChild(h1);
-
-    this.setHello(h1);
+    const template = document.getElementById("hello-planet-template").content;
+    shadow.appendChild(template.cloneNode(true));
+    this.setHello();
   }
 
   connectedCallback() {}
 
   attributeChangedCallback(changedAttribute) {
     if (changedAttribute === "name") {
-      const h1 = this.shadowRoot.getElementById("hello");
-      this.setHello(h1);
+      this.setHello();
     }
   }
 
-  setHello(h1) {
+  setHello() {
+    const h1 = this.shadowRoot.getElementById("hello");
     h1.innerText = "Hello " + this.getAttribute("name");
   }
 }

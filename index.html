@@ -5,128 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      h1 {
+        color: purple;
+      }
+    </style>
   </head>
   <body>
-    <input id="search-input" type="text" placeholder="search..." />
+    <planet-input></planet-input>
+    <hello-planet name="Napture" id="first-hello-planet"></hello-planet>
+    <h1>Hello Pin</h1>
     <div>
-      <label for="checkbox">
-        <input id="checkbox" name="checkbox" type="checkbox" />
-        only show the product in stock
+      <input type="text" placeholder="Search..." id="search-input" />
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" id="is-stocked-only" />
+        Only show product in stock
       </label>
     </div>
     <table id="product-table">
-      <!-- <thead>
+      <thead>
         <tr>
           <th>Name</th>
           <th>Price</th>
         </tr>
       </thead>
-      <tbody> -->
-      <!-- <tr>
-          <td colspan="2" style="text-align: center; font-weight: bold">
-            SeaFood
-          </td>
-        </tr>
-        <tr>
-          <td>Shrimp Fried Rice</td>
-          <td>$12</td>
-        </tr> -->
-      <!-- </tbody> -->
+      <tbody></tbody>
     </table>
-    <script>
-      const searchInput = document.getElementById("search-input");
-      const checkBox = document.getElementById("checkbox");
-      const table = document.getElementById("product-table");
-      const products = [
-        { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
-        { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
-        {
-          category: "Fruits",
-          price: "$2",
-          stocked: false,
-          name: "Passionfruit",
-        },
-        { category: "Vegetables", price: "$2", stocked: true, name: "Spinach" },
-        {
-          category: "Vegetables",
-          price: "$4",
-          stocked: false,
-          name: "Pumpkin",
-        },
-        { category: "Vegetables", price: "$1", stocked: true, name: "Peas" },
-        { category: "Food", price: "$10", stocked: true, name: "Pizza" },
-      ];
-
-      let search;
-      let isStockOnly;
-
-      searchInput.addEventListener("input", (e) => {
-        const { value } = e.target;
-        search = value;
-        onFilterProduct();
-      });
-      checkBox.addEventListener("change", (e) => {
-        isStockOnly = e.target.checked;
-        onFilterProduct();
-      });
-
-      const onFilterProduct = () => {
-        const filterdProducts = products.filter(
-          (pro) =>
-            pro.name.startsWith(search) && (!isStockOnly ? true : pro.stocked)
-        );
-        renderTable(filterdProducts);
-      };
-
-      const createCategory = (category) => {
-        const row = table.insertRow();
-        const child = document.createElement("td");
-        child.colSpan = "2";
-        child.style.textAlign = "center";
-        child.style.fontWeight = "bold";
-        child.innerText = category;
-        row.appendChild(child);
-      };
-
-      const createCategoryCells = (category, productsFilter) => {
-        const cells = productsFilter.filter(
-          (product) => product.category == category
-        );
-        for (const cell of cells) {
-          const row = table.insertRow();
-          const nameId = document.createElement("td");
-          const priceId = document.createElement("td");
-
-          nameId.innerText = cell.name;
-          priceId.innerText = cell.price;
-
-          row.appendChild(nameId);
-          row.appendChild(priceId);
-          if (!cell.stocked) {
-            nameId.style.color = "red";
-          }
-        }
-      };
-
-      const renderTable = (productsFilter) => {
-        table.innerHTML = `
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>`;
-        for (const category of new Set(
-          productsFilter.map((product) => product.category)
-        )) {
-          createCategory(category);
-          createCategoryCells(category, productsFilter);
-        }
-      };
-
-      renderTable(products);
-    </script>
+    <script src="main.js"></script>
+    <script src="components/hello-planet/hello-planet.js"></script>
+    <script src="components/planet-input/planet-input.js"></script>
   </body>
 </html>

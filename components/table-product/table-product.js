@@ -25,6 +25,7 @@ class TableProduct extends HTMLElement {
 
   render = (products) => {
     const table = this.shadowRoot.getElementById("product-table");
+    this.clear(table);
     for (const product of new Set(
       products.map((product) => product.category)
     )) {
@@ -32,6 +33,20 @@ class TableProduct extends HTMLElement {
       const productsInCat = products.filter((p) => p.category === product);
       this.addProducts(table, productsInCat);
     }
+  };
+
+  clear = (t) => {
+    while (t.rows.length !== 0) {
+      t.deleteRow(t.rows[t.rows.length - 1]);
+    }
+    this.addHeader(t);
+  };
+
+  addHeader = (t) => {
+    const tHead = t.createTHead();
+    const headerRow = tHead.insertRow();
+    headerRow.insertCell().outerHTML = "<th>Name</th>";
+    headerRow.insertCell().outerHTML = "<th>Price</th>";
   };
 
   addSectionHeader = (t, category) => {

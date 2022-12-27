@@ -14,15 +14,21 @@
         font-weight: bold;
       }
     </style>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body class="container mx-auto">
     <planet-input></planet-input>
     <hello-planet name="Napture" id="first-hello-planet">
       <span id="icon" slot="icon">😃 Hello</span></hello-planet
     >
     <h1>Hello Me</h1>
     <div>
-      <input type="text" placeholder="Search..." id="search-input" />
+      <input
+        type="text"
+        placeholder="Search..."
+        id="search-input"
+        style="white-space: nowrap"
+      />
     </div>
     <div>
       <label>
@@ -30,7 +36,12 @@
         Only show product in stock
       </label>
     </div>
-    <table-product id="product-table"></table-product>
+    <div class="overflow-x-auto">
+      <table-product
+        id="product-table"
+        class="min-w-full w-full divide-y divide-gray-200 text-sm"
+      ></table-product>
+    </div>
     <template id="hello-planet-template">
       <h1 id="hello">Hello Template</h1>
       <slot name="icon">default</slot>

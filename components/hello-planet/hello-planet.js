@@ -20,10 +20,10 @@ class HelloPlanet extends HTMLElement {
     }
   }
 
-  setHello() {
+  setHello = () => {
     const h1 = this.shadowRoot.getElementById("hello");
     h1.innerText = "Hello " + this.getAttribute("name");
-  }
+  };
 }
 
 customElements.define("hello-planet", HelloPlanet);

@@ -24,5 +24,23 @@
     "stocked": false,
     "name": "Pumpkin"
   },
-  { "category": "Vegetables", "price": "$1", "stocked": true, "name": "Peas" }
+  { "category": "Vegetables", "price": "$1", "stocked": true, "name": "Peas" },
+  {
+    "category": "Seafoods",
+    "price": "$12",
+    "stocked": true,
+    "name": "Lopster"
+  },
+  {
+    "category": "Seafoods",
+    "price": "$15",
+    "stocked": true,
+    "name": "Seabass"
+  },
+  {
+    "category": "Seafoods",
+    "price": "$150",
+    "stocked": false,
+    "name": "Salmon"
+  }
 ]
